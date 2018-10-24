@@ -1,0 +1,112 @@
+
+
+
+FluxFingers                                                       pspaul
+Request for Comments: 31337                       Ruhr-University Bochum
+                                                      September 20, 2018
+
+
+                    A PROPOSED BINARY PATCH FORMAT
+
+INTRODUCTION:
+
+   This document specifies a format of binary file patches. Patches are
+   applied line by line, from top to bottom. Invalid lines are ignored.
+   An invalid line does either not conform the specified format or
+   references an invalid position.
+
+DEFINITION:
+
+   patch = { patch_line }
+   patch_line = ( add_instruction | modify_instruction
+                  | delete_instruction ), "\n"
+   add_instruction = "A", " ", byte_position, " ", byte_value
+   modify_instruction = "M", " ", byte_position, " ", byte_value
+   delete_instruction = "D", " ", byte_position
+   byte_position = { hex_char }
+   byte_value = hex_char, hex_char
+   hex_char = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+              | ( "a" | "A" ) | ( "b" | "B" ) | ( "c" | "C" )
+              | ( "d" | "D" ) | ( "e" | "E" ) | ( "f" | "F" )
+
+EXAMPLE:
+
+   Input file:
+
+   00000000: 5351 4c69 7465 2066 6f72 6d61 7420 3300  SQLite format 3.
+   00000010: 1000 0101 0040 2020 0000 000a 0000 0004  .....@  ........
+   00000020: 0000 0000 0000 0000 0000 0002 0000 0004  ................
+   00000030: 0000 0000 0000 0000 0000 0001 0000 0000  ................
+   00000040: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+   00000050: 0000 0000 0000 0000 0000 0000 0000 000a  ................
+   00000060: 002e 2480 0d00 0000 030e 2500 0efa 0ea8  ..$.......%.....
+   00000070: 0e25 0000 0000 0000 0000 0000 0000 0000  .%..............
+   00000080: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+   00000090: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+
+
+
+
+
+
+
+
+
+
+pspaul                                                          [Page 1]
+
+RFC 31337           A Proposed Binary Patch Format        September 2018
+
+
+   Patch:
+
+   A 0 4d
+   A 1 79
+   M 4a 31
+   M 4b 33
+   M 4c 33
+   M 4d 37
+   D 63
+
+
+   Output file:
+
+   00000000: 4d79 5351 4c69 7465 2066 6f72 6d61 7420  MySQLite format 
+   00000010: 3300 1000 0101 0040 2020 0000 000a 0000  3......@  ......
+   00000020: 0004 0000 0000 0000 0000 0000 0002 0000  ................
+   00000030: 0004 0000 0000 0000 0000 0000 0001 0000  ................
+   00000040: 0000 0000 0000 0000 0000 3133 3347 0000  ..........1337..
+   00000050: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+   00000060: 000a 002e 800d 0000 0003 0e25 000e fa0e  ...........%....
+   00000070: a80e 2500 0000 0000 0000 0000 0000 0000  ..%.............
+   00000080: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+   00000090: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+   000000a0: 00
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pspaul                                                          [Page 2]
