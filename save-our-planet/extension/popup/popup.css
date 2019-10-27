@@ -1,0 +1,26 @@
+:root {
+    font-family: monospace;
+    background: #efefef;
+    color: #333;
+}
+
+h1 { color: #333; }
+h2 { color: #444; }
+h3 { color: #555; }
+h4 { color: #666; }
+h5 { color: #777; }
+h6 { color: #888; }
+
+#logo {
+    text-align: center;
+    width: 100%;
+}
+#logo > img {
+    display: inline-block;
+}
+
+footer {
+    font-size: small;
+    opacity: 0.5;
+    text-align: center;
+}

@@ -1,0 +1,34 @@
+{
+    "applications": {
+        "gecko": {
+            "id": "saveourplanet@fluxfingers.net"
+        }
+    },
+    "manifest_version": 2,
+    "name": "Save our Planet!",
+    "version": "1.0.1",
+    "description": "Saves our planet by saving your data and energy!",
+    "icons": {
+        "48": "icons/earth-48.png",
+        "96": "icons/earth-96.png"
+    },
+    "browser_action": {
+        "default_icon": {
+          "19": "button/earth-19.png",
+          "38": "button/earth-38.png"
+        },
+        "default_title": "Save our Planet!",
+        "default_popup": "popup/index.html"
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';",
+    "permissions": ["activeTab"],
+    "background": {
+        "scripts": ["hq.js"]
+    },
+    "content_scripts": [{
+        "matches": ["*://*/*"],
+        "js": ["inject.js"],
+        "all_frames": true
+    }],
+    "web_accessible_resources": ["*"]
+}
