@@ -1,0 +1,7 @@
+A bigram or digram is a sequence of two adjacent elements from a string of tokens, which are typically letters, syllables, or words. A bigram is an n-gram for n=2. The frequency distribution of every bigram in a string is commonly used for simple statistical analysis of text in many applications, including in computational linguistics, cryptography, speech recognition, and so on.
+Gappy bigrams or skipping bigrams are word pairs which allow gaps (perhaps avoiding connecting words, or allowing some simulation of dependencies, as in a dependency grammar).
+Head word bigrams are gappy bigrams with an explicit dependency relationship.
+Bigrams are used in most successful language models for speech recognition. They are a special case of N-gram.
+Bigram frequency attacks can be used in cryptography to solve cryptograms. See frequency analysis.
+Bigram frequency is one approach to statistical language identification.
+Some activities in logology or recreational linguistics involve bigrams. These include attempts to find English words beginning with every possible bigram, or words containing a string of repeated bigrams, such as logogogue.
