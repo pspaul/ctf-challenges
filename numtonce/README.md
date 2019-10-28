@@ -1,5 +1,5 @@
 # Numtonce
-(**N**umber **U**ser **M**ore **T**han **Once**)
+(**N**umber **U**sed **M**ore **T**han **Once**)
 
 **Category:** Web  
 **Points:** 499  
