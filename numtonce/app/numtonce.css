@@ -1,0 +1,29 @@
+*, a, a:visited, a:active {
+    font-family: monospace;
+    color: white;
+}
+html {
+    height: 100vh;
+    background: linear-gradient(to right, #B5AC49, #3CA55C);
+}
+p:first-of-type {
+    opacity: 0.8;
+    margin-top: 2em;
+}
+p:last-of-type {
+    opacity: 0.6;
+    margin-bottom: 3em;
+}
+#garden {
+    white-space: pre;
+    user-select: none;
+}
+.emoji {
+    width: 3em;
+    height: 3em;
+    display: inline-block;
+    background-size: contain;
+}
+.emoji[alt=":white_small_square:"] {
+    opacity: 0.1;
+}
