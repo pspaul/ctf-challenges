@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package main;
+
+message ApiResults {
+  message ApiResult {
+    oneof result {
+      uint32 count = 1;
+      string last_answer = 2;
+      bool was_queried = 3;
+    }
+  }
+
+  repeated ApiResult api_result = 1;
+}

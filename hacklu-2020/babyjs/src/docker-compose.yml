@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+    babyjs:
+        build: .
+        restart: always
+        ports:
+            - "1337:1337"
+        environment:
+            FLAG: "flag{y0u_ar3_n0w_a_c3rtif1ed_JS_pr0}"

@@ -1,0 +1,67 @@
+version: '3.7'
+
+services:
+  firewall:
+    image: haproxy:2.2-alpine
+    restart: unless-stopped
+    networks:
+      frontline:
+        aliases:
+          - firewall
+    depends_on:
+      - router
+    ports:
+      - "8443:443"
+    volumes:
+      - "./firewall/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
+
+  router:
+    image: nginx:1.19-alpine
+    restart: unless-stopped
+    networks:
+      frontline:
+        aliases:
+          - router
+    depends_on:
+      - app-public
+      - app-secret
+    volumes:
+      - "./router/default.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "./router/certs:/certs:ro"
+
+  app-public:
+    image: nginx:1.19-alpine
+    restart: unless-stopped
+    networks:
+      frontline:
+        aliases:
+          - public.cloud.flux
+    volumes:
+      - "./app-public/default.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "./app-public/www:/var/www:ro"
+
+  app-secret:
+    image: nginx:1.19-alpine
+    restart: unless-stopped
+    networks:
+      frontline:
+        aliases:
+          - secret.cloud.flux
+    depends_on:
+      - metadata
+    volumes:
+      - "./app-secret/default.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "./app-secret/www:/var/www:ro"
+
+  metadata:
+    build: ./app-metadata/
+    restart: unless-stopped
+    networks:
+      frontline:
+        aliases:
+          - metadata
+    environment:
+      FLAG: 'flag{th1s_isnt_y0ur_f1rst_t1me_p3netr4ting_fir3walls_huh?}'
+
+networks:
+  frontline:

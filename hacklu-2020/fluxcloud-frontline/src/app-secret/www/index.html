@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head class="p-3">
+        <meta charset="utf-8">
+        <title>Secret Page</title>
+        <link href="tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="font-sans text-gray-900">
+        <header class="w-full bg-blue-900 text-blue-100">
+            <div class="container mx-auto p-3">
+                <div class="text-2xl font-semibold">FluxCloud Frontline</div>
+                <div class="text-lg">Secret Page</div>
+            </div>
+        </header>
+        <main class="container mx-auto mt-6 text-blue-900">
+            <div class="shadow-md bg-green-500 text-white p-3 rounded font-medium">
+                All Systems Operational
+            </div>
+            <div class="shadow-md border-gray-300 border rounded mt-6 divide-y divide-gray-300">
+                <div class="flex p-3" data-page="public">
+                    <div class="text-gray-700 font-semibold flex-grow">Public Page</div>
+                    <div class="mx-3 text-sm text-gray-500">
+                        Load: <span class="data-load">0.00</span>
+                    </div>
+                    <div class="text-green-500 w-32 text-right"></div>
+                </div>
+                <div class="flex p-3" data-page="secret">
+                    <div class="text-gray-700 font-semibold flex-grow">Secret Page</div>
+                    <div class="mx-3 text-sm text-gray-500">
+                        Load: <span class="data-load">0.00</span>
+                    </div>
+                    <div class="text-green-500 w-32 text-right"></div>
+                </div>
+            </div>
+        </main>
+
+        <script src="/_meta/socket.io/socket.io.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>

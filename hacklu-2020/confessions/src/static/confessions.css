@@ -1,0 +1,72 @@
+:root {
+    background: #fcc;
+    color: #f22;
+    font-family: monospace;
+}
+body {
+    max-width: 800px;
+}
+a, a:visited {
+    color: #f22;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+
+.description {
+    text-decoration: italic;
+    margin-bottom: 2em;
+}
+#title, #message {
+    width: 30em;
+    display: block;
+    border: 1px solid #f66;
+    border-radius: 5px;
+    background-color: #faa;
+    color: #f22;
+    padding: 2px;
+    margin: 0.5em 0;
+}
+#message {
+    min-height: 10em;
+}
+#title::placeholder, #message::placeholder {
+    color: #f66;
+}
+#save {
+    margin: 0.5em 0;
+}
+button {
+    border: 1px solid #f66;
+    background-color: #faa;
+    border-radius: 5px;
+    color: #f22;
+    margin: 0.5em;
+    cursor: pointer;
+}
+*[disabled] {
+    opacity: 0.5;
+}
+.confession {
+    border: 2px solid #f66;
+    background-color: #faa;
+    color: #f22;
+    border-radius: 1em;
+    padding: 1em;
+    display: inline-block;
+}
+.confession > .title {
+    margin: 0;
+}
+.confession .label {
+    font-size: small;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 1em;
+    color: #f66;
+}
+.confession > * {
+    word-break: break-word;
+}

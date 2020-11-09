@@ -1,0 +1,21 @@
+{
+  "name": "resolver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "@sagi.io/dns-over-https": "0.0.2",
+    "bluebird": "^3.7.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "redis": "^2.8.0",
+    "google-protobuf": "^3.13.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT"
+}

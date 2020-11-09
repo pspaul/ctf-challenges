@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Confessions 💕</title>
+        <link rel="stylesheet" href="confessions.css">
+    </head>
+    <body>
+        <h1>
+            <a href="/">Confessions</a>
+            💕
+        </h1>
+
+        <div id="input">
+            <div class="description">
+                Ever wanted to prove that you knew some secret without
+                revealing it right away?
+                <br><br>
+                You can confess your deepest secrets here!
+                Send the hash to anyone or post it.
+                When you want to reveal the secret, just give them the link.
+                They can then check that the hash matches the message,
+                so they know that you knew that secret message when you
+                published the hash!
+            </div>
+
+            <input id="title" placeholder="Title">
+            <textarea id="message" placeholder="Enter your confession here..."></textarea>
+            <button id="publish">Publish</button>
+
+            <h3>Preview:</h3>
+        </div>
+
+        <div id="preview" class="confession">
+            <h4 class="title">&lt;title&gt;</h4>
+
+            <div class="label">Hash</div>
+            <div class="hash">&lt;hash&gt;</div>
+
+            <div class="label">Message</div>
+            <div class="message">&lt;message&gt;</div>
+
+            <div class="label">How to verify</div>
+            <div class="how-to-verify">&lt;how to verify&gt;</div>
+        </div>
+
+        <script src="confessions.js"></script>
+    </body>
+</html>

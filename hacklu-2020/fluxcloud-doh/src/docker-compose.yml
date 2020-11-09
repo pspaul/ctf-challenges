@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:  
+  resolver:
+    build: ./resolver/
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "80:3000"
+    environment:
+      - "FLAG=${FLAG}"
+      - "REDIS_HOST=db"
+      - "REDIS_PASS=${REDIS_PASS}"
+
+  db:
+    image: redis:alpine
+    command: redis-server --requirepass ${REDIS_PASS}
+    restart: unless-stopped
