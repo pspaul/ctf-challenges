@@ -11,3 +11,6 @@
     - [FluxCloud Frontline (Web 351)](hacklu-2020/fluxcloud-frontline/): Abuse TLS-SNI and WebSockets to bypass multiple layers of firewalls.
     - [FluxCloud DoH (Web 412)](hacklu-2020/fluxcloud-doh/): Build a Protobuf/DNS polyglot to access an internal endpoint via SSRF.
     - [BabyJS (Web 241)](hacklu-2020/babyjs/): Show your knowledge of JavaScript quirks.
+- Hack.lu CTF 2021
+    - [NodeNB (Web 198)](hacklu-2021/nodenb/): Win a session-write race condition to bypass an access check.
+    - [trading-api (Web 285)](hacklu-2021/trading-api/): Bypass auth and use a partially-controlled prototype pollution to perform SQLi.
