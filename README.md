@@ -14,3 +14,9 @@
 - Hack.lu CTF 2021
     - [NodeNB (Web 198)](hacklu-2021/nodenb/): Win a session-write race condition to bypass an access check.
     - [trading-api (Web 285)](hacklu-2021/trading-api/): Bypass auth and use a partially-controlled prototype pollution to perform SQLi.
+- Hack.lu CTF 2022: TBD
+- Hack.lu CTF 2023: TBD
+- Hack.lu CTF 2024:
+    - [GymTok (Web 500)](hacklu-2024/gymtok/): Use the Alt-Svc header to become a Man-in-the-Middle and attack TLS
+    - More TBD
+

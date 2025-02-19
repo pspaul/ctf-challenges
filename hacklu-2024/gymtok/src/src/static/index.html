@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymTok</title>
+    <link rel="icon" href="/gymtok.png" type="image/png">
+    <link rel="stylesheet" href="gymtok.css" integrity="sha256-n+1CwektcDyqSqxkR72WDwVd8vo23onJY+b3+CDB7Eo=">
+</head>
+<body>
+    <nav>
+        <h1>
+            <a href="/">
+                <img src="/gymtok.png" id="logo">
+                <span class="color-glitch" data-text="GymTok">GymTok</span>
+            </a>
+        </h1>
+        <div id="search">
+            <input id="search-input" type="text" placeholder="Search" disabled>
+            <span class="delimiter"></span>
+            <button id="search-button" disabled>
+                <svg width="24" data-e2e="" height="24" viewBox="0 0 48 48" fill="rgba(22, 24, 35, .75)" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M22 10C15.3726 10 10 15.3726 10 22C10 28.6274 15.3726 34 22 34C28.6274 34 34 28.6274 34 22C34 15.3726 28.6274 10 22 10ZM6 22C6 13.1634 13.1634 6 22 6C30.8366 6 38 13.1634 38 22C38 25.6974 36.7458 29.1019 34.6397 31.8113L43.3809 40.5565C43.7712 40.947 43.7712 41.5801 43.3807 41.9705L41.9665 43.3847C41.5759 43.7753 40.9426 43.7752 40.5521 43.3846L31.8113 34.6397C29.1019 36.7458 25.6974 38 22 38C13.1634 38 6 30.8366 6 22Z"></path></svg>
+            </button>
+            <div id="results"></div>
+        </div>
+        <div id="nav-actions">
+            <button id="upload">
+                <svg class="css-qeydvm-StyledPlusIcon e18d3d945" width="1em" data-e2e="" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 2.5C7.58579 2.5 7.25 2.83579 7.25 3.25V7.25H3.25C2.83579 7.25 2.5 7.58579 2.5 8C2.5 8.41421 2.83579 8.75 3.25 8.75H7.25V12.75C7.25 13.1642 7.58579 13.5 8 13.5C8.41421 13.5 8.75 13.1642 8.75 12.75V8.75H12.75C13.1642 8.75 13.5 8.41421 13.5 8C13.5 7.58579 13.1642 7.25 12.75 7.25H8.75V3.25C8.75 2.83579 8.41421 2.5 8 2.5Z"></path></svg>
+                <span>Upload</span>
+            </button>
+            <button id="login-toggle">
+                Log in
+            </button>
+        </div>
+    </nav>
+    <main>
+        <div id="sidebar">
+            <div id="for-you" class="sidebar-item">
+                <svg width="32" data-e2e="" height="32" viewBox="0 0 48 48" fill="rgba(254, 44, 85, 1)" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M24.9505 7.84001C24.3975 7.38666 23.6014 7.38666 23.0485 7.84003L6.94846 21.04C6.45839 21.4418 6.2737 22.1083 6.48706 22.705C6.70041 23.3017 7.26576 23.7 7.89949 23.7H10.2311L11.4232 36.7278C11.5409 38.0149 12.6203 39 13.9128 39H21.5C22.0523 39 22.5 38.5523 22.5 38V28.3153C22.5 27.763 22.9477 27.3153 23.5 27.3153H24.5C25.0523 27.3153 25.5 27.763 25.5 28.3153V38C25.5 38.5523 25.9477 39 26.5 39H34.0874C35.3798 39 36.4592 38.0149 36.577 36.7278L37.7691 23.7H40.1001C40.7338 23.7 41.2992 23.3017 41.5125 22.705C41.7259 22.1082 41.5412 21.4418 41.0511 21.04L24.9505 7.84001Z"></path></svg>
+                <span>For You</span>
+            </div>
+            <div class="sidebar-item">
+                <div class="smallizer">
+                    <svg fill="rgba(22, 24, 35, 1)" width="1em" height="1em" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M18.99 4a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm0 4a6 6 0 1 0 0 12.01A6 6 0 0 0 19 8ZM18.99 27c2.96 0 5.6.58 7.87 1.65l-3.07 3.06a15.38 15.38 0 0 0-4.8-.71C10.9 31 6.3 36.16 6 44c-.02.55-.46 1-1.02 1h-2c-.55 0-1-.45-.98-1C2.33 33.99 8.7 27 19 27ZM35.7 42.88 31.82 39H45a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H31.82l3.88-3.88a1 1 0 0 0 0-1.41l-1.41-1.42a1 1 0 0 0-1.42 0l-7.3 7.3a2 2 0 0 0 0 2.82l7.3 7.3a1 1 0 0 0 1.42 0l1.41-1.42a1 1 0 0 0 0-1.41Z"></path></svg>
+                </div>
+                <span>Following</span>
+            </div>
+            <div class="sidebar-item">
+                <svg width="32" data-e2e="" height="32" viewBox="0 0 48 48" fill="rgba(22, 24, 35, 1)" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 12.5C15.5897 12.5 13.5849 14.5018 13.5849 17.0345C13.5849 19.5672 15.5897 21.569 18 21.569C20.4103 21.569 22.4151 19.5672 22.4151 17.0345C22.4151 14.5018 20.4103 12.5 18 12.5ZM10.5849 17.0345C10.5849 12.9017 13.8766 9.5 18 9.5C22.1234 9.5 25.4151 12.9017 25.4151 17.0345C25.4151 21.1673 22.1234 24.569 18 24.569C13.8766 24.569 10.5849 21.1673 10.5849 17.0345ZM18 29.8793C14.0801 29.8793 10.7403 32.5616 9.69697 36.2673C9.5473 36.7989 9.03833 37.1708 8.49337 37.0811L7.50662 36.9189C6.96166 36.8292 6.58837 36.3131 6.72325 35.7776C8.00732 30.6788 12.5509 26.8793 18 26.8793C23.449 26.8793 27.9927 30.6788 29.2767 35.7776C29.4116 36.3131 29.0383 36.8292 28.4934 36.9189L27.5066 37.0811C26.9617 37.1708 26.4527 36.7989 26.303 36.2673C25.2597 32.5616 21.9199 29.8793 18 29.8793Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M33 31.5371C32.2445 31.5371 31.5198 31.668 30.8447 31.9093C30.3246 32.0951 29.7189 31.9243 29.4549 31.4392L28.9769 30.5608C28.713 30.0757 28.8907 29.463 29.4009 29.2516C30.513 28.791 31.7285 28.5371 33 28.5371C37.4554 28.5371 41.1594 31.6303 42.2706 35.7812C42.4135 36.3147 42.0386 36.8308 41.4935 36.9196L40.5065 37.0804C39.9614 37.1692 39.4546 36.7956 39.2894 36.2686C38.4217 33.5 35.91 31.5371 33 31.5371Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M33 18.5C31.6193 18.5 30.5 19.6193 30.5 21C30.5 22.3807 31.6193 23.5 33 23.5C34.3807 23.5 35.5 22.3807 35.5 21C35.5 19.6193 34.3807 18.5 33 18.5ZM27.5 21C27.5 17.9624 29.9624 15.5 33 15.5C36.0376 15.5 38.5 17.9624 38.5 21C38.5 24.0376 36.0376 26.5 33 26.5C29.9624 26.5 27.5 24.0376 27.5 21Z"></path></svg>
+                <span>Friends</span>
+            </div>
+            <div class="sidebar-item">
+                <svg fill="rgba(22, 24, 35, 1)" width="1em" height="1em" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 37.4a13.4 13.4 0 1 0 0-26.8 13.4 13.4 0 0 0 0 26.8ZM40.5 24a16.5 16.5 0 1 1-33 0 16.5 16.5 0 0 1 33 0Z"></path><path d="M27.13 27.18 19 32.1a.6.6 0 0 1-.9-.63l1.84-9.33a2 2 0 0 1 .92-1.32L29 15.9a.6.6 0 0 1 .9.63l-1.84 9.33a2 2 0 0 1-.93 1.32Zm-5.04-.45 3.11-1.89.7-3.57-3.1 1.89-.7 3.57Z"></path></svg>
+                <span>Explore</span>
+            </div>
+            <div class="sidebar-item">
+                <svg width="32" data-e2e="" height="32" viewBox="0 0 32 32" fill="rgba(22, 24, 35, 1)" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.78511 10.3334C6.95518 10.3334 6.33301 10.9792 6.33301 11.7143V20.2858C6.33301 21.0209 6.95518 21.6667 7.78511 21.6667H18.5744C19.4043 21.6667 20.0265 21.0209 20.0265 20.2858V17.5602C20.0265 17.1826 20.2392 16.8372 20.5763 16.6672C20.9135 16.4973 21.3177 16.5317 21.6212 16.7563L25.6663 19.7488V12.2513L21.6212 15.2439C21.3177 15.4684 20.9135 15.5029 20.5763 15.3329C20.2392 15.1629 20.0265 14.8175 20.0265 14.4399V11.7143C20.0265 10.9792 19.4043 10.3334 18.5744 10.3334H7.78511ZM25.6855 12.2371C25.6831 12.2388 25.6839 12.2383 25.6839 12.2383L25.6855 12.2371ZM25.6716 12.2177C25.673 12.2212 25.6746 12.2243 25.6763 12.2269C25.6798 12.2324 25.6834 12.2355 25.6855 12.2371L25.6874 12.2383C25.6874 12.2383 25.6865 12.238 25.6839 12.2383M4.33301 11.7143C4.33301 9.81952 5.90653 8.33337 7.78511 8.33337H18.5744C20.453 8.33337 22.0265 9.81953 22.0265 11.7143V12.4562L24.4963 10.629C25.0929 10.1877 25.8879 10.1155 26.5542 10.4359C27.224 10.758 27.6663 11.4325 27.6663 12.1905V19.8096C27.6663 20.5676 27.224 21.2421 26.5542 21.5642C25.888 21.8846 25.0929 21.8124 24.4963 21.371L22.0265 19.5439V20.2858C22.0265 22.1806 20.453 23.6667 18.5744 23.6667H7.78511C5.90653 23.6667 4.33301 22.1806 4.33301 20.2858V11.7143Z"></path><path d="M15 15.134C15.6667 15.5189 15.6667 16.4811 15 16.866L12 18.5981C11.3333 18.983 10.5 18.5019 10.5 17.7321L10.5 14.2679C10.5 13.4981 11.3333 13.017 12 13.4019L15 15.134Z"></path></svg>
+                <span>LIVE</span>
+            </div>
+            <div class="sidebar-item">
+                <div class="smallizer">
+                    <svg width="24" data-e2e="" height="24" viewBox="0 0 48 48" fill="rgba(22, 24, 35, 1)" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M24.0003 7C20.1343 7 17.0003 10.134 17.0003 14C17.0003 17.866 20.1343 21 24.0003 21C27.8663 21 31.0003 17.866 31.0003 14C31.0003 10.134 27.8663 7 24.0003 7ZM13.0003 14C13.0003 7.92487 17.9252 3 24.0003 3C30.0755 3 35.0003 7.92487 35.0003 14C35.0003 20.0751 30.0755 25 24.0003 25C17.9252 25 13.0003 20.0751 13.0003 14ZM24.0003 33C18.0615 33 13.0493 36.9841 11.4972 42.4262C11.3457 42.9573 10.8217 43.3088 10.2804 43.1989L8.32038 42.8011C7.77914 42.6912 7.4266 42.1618 7.5683 41.628C9.49821 34.358 16.1215 29 24.0003 29C31.8792 29 38.5025 34.358 40.4324 41.628C40.5741 42.1618 40.2215 42.6912 39.6803 42.8011L37.7203 43.1989C37.179 43.3088 36.6549 42.9573 36.5035 42.4262C34.9514 36.9841 29.9391 33 24.0003 33Z"></path></svg>
+                </div>
+                <span>Profile</span>
+            </div>
+            <div class="sidebar-divider">&nbsp;</div>
+            <div id="h2-disclaimer">
+                Slow page loads?<br>
+                <a class="accent" href="?cdn=:3444">Try HTTP/2!</a>
+            </div>
+        </div>
+        <div id="feed">
+            <button id="goto-for-you">
+                <svg width="32" data-e2e="" height="32" viewBox="0 0 48 48" fill="rgba(22, 24, 35, 1)" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M24.9505 7.84001C24.3975 7.38666 23.6014 7.38666 23.0485 7.84003L6.94846 21.04C6.45839 21.4418 6.2737 22.1083 6.48706 22.705C6.70041 23.3017 7.26576 23.7 7.89949 23.7H10.2311L11.4232 36.7278C11.5409 38.0149 12.6203 39 13.9128 39H21.5C22.0523 39 22.5 38.5523 22.5 38V28.3153C22.5 27.763 22.9477 27.3153 23.5 27.3153H24.5C25.0523 27.3153 25.5 27.763 25.5 28.3153V38C25.5 38.5523 25.9477 39 26.5 39H34.0874C35.3798 39 36.4592 38.0149 36.577 36.7278L37.7691 23.7H40.1001C40.7338 23.7 41.2992 23.3017 41.5125 22.705C41.7259 22.1082 41.5412 21.4418 41.0511 21.04L24.9505 7.84001Z"></path></svg>
+                <span>For You</span>
+            </button>
+        </div>
+    </main>
+    <dialog id="dialog-login" class="dialog-container">
+        <div class="dialog-inner">
+            <div class="dialog-close">✕</div>
+            <h2 class="dialog-title">Log in</h2>
+            <div class="dialog-form">
+                <input type="text" placeholder="Username" name="username">
+                <input type="password" placeholder="Password" autocomplete="new-password" name="password">
+                <button id="login-button" class="dialog-button">Log in</button>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <div>
+                Don't have an account?
+                <b class="accent">Tough luck!</b>
+            </div>
+        </div>
+    </dialog>
+    <dialog id="dialog-upload" class="dialog-container">
+        <div class="dialog-inner">
+            <div class="dialog-close">✕</div>
+            <h2 class="dialog-title">Upload</h2>
+            <ol id="upload-steps">
+                <li>Connect to <code id="upload-url"></code></li>
+                <li>Authenticate with <code id="upload-creds"></code></li>
+                <li>Upload <code id="upload-file"></code></li>
+            </ol>
+            <button id="dialog-upload-ok" class="dialog-button">OK</button>
+        </div>
+    </dialog>
+    <template id="post-template">
+        <div class="post">
+            <img class="avatar post-data-avatar" alt="User">
+            <div class="post-content">
+                <div class="post-header">
+                    <div class="post-description">
+                        <h3 class="post-data-user">username</h3>
+                        <div>
+                            <span class="post-data-description">description</span>
+                            <span class="post-data-tags">
+                                <span class="usertag">@somebody</span>
+                                <span class="hashtag">#lorem</span>
+                            </span>
+                        </div>
+                        <div class="post-music">
+                            <svg width="1em" height="1em" fill="rgba(22, 24, 35, 1)" class="css-wyuo16-MusicNoteIcon epjbyn4"><use xlink:href="#Music_Note-6c3c6885"></use></svg>
+                            <span class="post-data-sound">original sound - song</span>
+                        </div>
+                    </div>
+                    <button class="post-follow" disabled>Follow</button>
+                </div>
+                <div class="post-video">
+                    <iframe
+                        class="post-data-embed"
+                        loading="lazy"
+                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-scripts allow-top-navigation allow-same-origin"
+                    ></iframe>
+                    <div class="post-actions">
+                        <div class="post-action">
+                            <button class="post-action-button">
+                                <svg width="24" height="24" fill="currentColor"><use xlink:href="#heart-fill-52d919d9"></use></svg>
+                            </button>
+                            <span class="post-data-likes">likes</span>
+                        </div>
+                        <div class="post-action">
+                            <button class="post-action-button">
+                                <svg width="24" height="24" fill="currentColor"><use xlink:href="#Bubble_Ellipsis_Right_Fill-1e761b66"></use></svg>
+                            </button>
+                            <span class="post-data-comments">comments</span>
+                        </div>
+                        <div class="post-action">
+                            <button class="post-action-button">
+                                <svg width="24" height="24" fill="currentColor"><use xlink:href="#uncollect-7652bb5c"></use></svg>
+                            </button>
+                            <span class="post-data-bookmarks">bookmarks</span>
+                        </div>
+                        <div class="post-action">
+                            <button class="post-action-button">
+                                <svg width="24" height="24" fill="currentColor"><use xlink:href="#pc-share-078b3fae"></use></svg>
+                            </button>
+                            <span class="post-data-shares">shares</span>
+                        </div>
+                        <div class="post-action">
+                            <button class="post-action-button post-action-report">
+                                <svg width="1em" height="1em" fill="currentColor" class="css-g9x481-StyledReport ebh6by64"><use xlink:href="#Flag-18fcd14e"></use></svg>
+                            </button>
+                            <span>Report</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <svg id="svg-sprite-container">
+        <symbol viewBox="0 0 48 48" id="Music_Note-6c3c6885"><path d="M35 10.76a1 1 0 0 0-1.22-.98l-15.99 3.64a1 1 0 0 0-.78.97V38c.03 2.17-2.2 4.43-5.4 5.28-3.56.96-6.96-.2-7.6-2.57-.63-2.37 1.74-5.07 5.3-6.02a9.2 9.2 0 0 1 3.7-.25V14.39a5 5 0 0 1 3.9-4.87l15.98-3.64A5 5 0 0 1 39 10.76v22.36c.08 2.2-2.17 4.5-5.4 5.36-3.56.95-6.96-.2-7.6-2.57-.63-2.38 1.74-5.08 5.3-6.03a9.2 9.2 0 0 1 3.7-.25z"></path></symbol>
+        <symbol viewBox="0 0 48 48" id="Ellipsis_Horizontal_Fill-763f7997"><path d="M4 24a5 5 0 1 1 10 0 5 5 0 0 1-10 0m15 0a5 5 0 1 1 10 0 5 5 0 0 1-10 0m20-5a5 5 0 1 0 0 10 5 5 0 0 0 0-10"></path></symbol>
+        <symbol viewBox="0 0 24 24" id="heart-fill-52d919d9"><g fill-rule="evenodd" clip-path="url(#heart-fill-52d919d9_a)" clip-rule="evenodd"><path d="M7.5 2.25c3 0 4.5 2 4.5 2s1.5-2 4.5-2c3.5 0 6 2.75 6 6.25 0 4-3.269 7.566-6.25 10.25C14.41 20.407 13 21.5 12 21.5s-2.45-1.101-4.25-2.75C4.82 16.066 1.5 12.5 1.5 8.5c0-3.5 2.5-6.25 6-6.25"></path><path fill="black" fill-opacity=".03" d="M2.402 12.2c1.187 2.497 3.357 4.727 5.348 6.55C9.55 20.399 11 21.5 12 21.5s2.41-1.093 4.25-2.75c2.98-2.684 6.25-6.25 6.25-10.25q0-.13-.005-.26C20.567 13.661 13.68 18.5 11.75 18.5c-1.437 0-6.14-2.687-9.348-6.3"></path></g><defs><clipPath id="heart-fill-52d919d9_a"><path fill="white" d="M0 0h24v24H0z"></path></clipPath></defs></symbol>
+        <symbol viewBox="0 0 48 48" id="Bubble_Ellipsis_Right_Fill-1e761b66"><path d="M3.5 21.44C3.5 11.47 13.04 4 24 4s20.5 7.47 20.5 17.44c0 5.85-2.93 10.69-6.47 14.37a41.7 41.7 0 0 1-11.06 7.97A2.05 2.05 0 0 1 24 41.95v-3.08c-10.96 0-20.5-7.47-20.5-17.43m11.79 3.07a2.56 2.56 0 1 0 0-5.12 2.56 2.56 0 0 0 0 5.12m8.71 0a2.56 2.56 0 1 0 0-5.12 2.56 2.56 0 0 0 0 5.12m11.27-2.56a2.56 2.56 0 1 0-5.12 0 2.56 2.56 0 0 0 5.13 0Z"></path></symbol>
+        <symbol viewBox="0 0 24 24" id="uncollect-7652bb5c"><path fill="currentColor" d="M4 4.5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v15.13a1 1 0 0 1-1.555.831l-6.167-4.12a.5.5 0 0 0-.556 0l-6.167 4.12A1 1 0 0 1 4 19.63z"></path><path fill="currentColor" fill-opacity=".03" d="M4.032 4.144Q4 4.317 4 4.5v15.13a1 1 0 0 0 1.555.831l6.167-4.12a.5.5 0 0 1 .41-.066l-.427-.198a1.49 1.49 0 0 0-1.377.063c-.581.339-1.45.85-2.25 1.339-.59.359-1.427.695-2.187.962-.929.325-1.86-.387-1.86-1.37zm8.251 12.202 6.162 4.115A1 1 0 0 0 20 19.63V4.5a2 2 0 0 0-1.123-1.798c.21.254.334.58.33.936a117 117 0 0 1-.896 13.408c-.124.99-1.17 1.553-2.076 1.133z"></path></symbol>
+        <symbol viewBox="0 0 20 20" id="pc-share-078b3fae"><path fill="currentColor" fill-rule="evenodd" d="M10.938 3.175a.674.674 0 0 1 1.138-.488l6.526 6.215c.574.547.554 1.47-.043 1.991l-6.505 5.676a.674.674 0 0 1-1.116-.508V13.49s-6.985-1.258-9.225 2.854c-.209.384-1.023.518-.857-1.395.692-3.52 2.106-9.017 10.082-9.017z" clip-rule="evenodd"></path><path fill="#161823" fill-rule="evenodd" d="m15.754 6.212 1.295 2.59a1.12 1.12 0 0 1-.268 1.349l-5.799 5.042s-.28 1.403.562 1.403 7.578-6.174 7.578-6.174.28-.842-.561-1.684c-.843-.842-2.807-2.526-2.807-2.526" clip-rule="evenodd" opacity=".03"></path><path fill="url(#pc-share-078b3fae_a)" fill-rule="evenodd" d="M10.937 6.23v7.297s-6.683-.942-8.777 2.246C.146 18.839.331 12.309 3.363 9.057s7.574-2.827 7.574-2.827" clip-rule="evenodd" opacity=".09"></path><defs><radialGradient id="pc-share-078b3fae_a" cx="0" cy="0" r="1" gradientTransform="rotate(-113.046 11.628 5.43)scale(8.93256 8.78076)" gradientUnits="userSpaceOnUse"><stop></stop><stop offset=".995" stop-opacity=".01"></stop><stop offset="1" stop-opacity=".01"></stop></radialGradient></defs></symbol>
+        <symbol viewBox="0 0 48 48" id="Flag-18fcd14e"><path d="M9 9.31v17.75c5.27-1.73 11.45-2.05 16.16 1.31 4.03 2.88 9.52 2.01 13.84.32V10.94c-5.27 1.73-11.45 2.05-16.16-1.31-4-2.86-9.53-2.01-13.84-.32M43 8v22a2 2 0 0 1-1.1 1.79c-5.83 2.9-13.5 3.82-19.06-.16C18.8 28.75 13.32 29.6 9 31.3V44a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8c0-.75.44-1.45 1.1-1.79 5.75-2.87 13.62-3.73 19.06.16 4.37 3.13 10.43 2.04 14.95-.16C41.4 5.56 43 6.54 43 8" /></symbol>
+    </svg>
+    <script src="gymtok.js" integrity="sha256-3OlbYLWPW1pFclyvDmerzR+dAAQAiC294FaCIyexP84="></script>
+</body>
+</html>

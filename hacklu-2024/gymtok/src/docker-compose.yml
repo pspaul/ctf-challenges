@@ -1,0 +1,27 @@
+services:
+  app:
+    build: ./src/
+    restart: unless-stopped
+    environment:
+      ADMIN_PASSWORD: 'changeme' # TODO: change for prod deployment
+      ADMIN_PASSWORD_FTP: 'changeme' # TODO: change for prod deployment
+      HTTPS_PORT: '3443'
+      HTTP2_PORT: '3444'
+      FTP_PORT: '3021'
+      FTP_DOMAIN: 'gymtok.social'
+      FTP_PASV_RANGE: '30000,30100'
+      SESSION_SECRET: 'changeme'
+      FTP_TLS_KEY: '/certs/gymtok-key.pem'
+      FTP_TLS_CERT: '/certs/gymtok-cert.pem'
+      BASE_URL: 'https://gymtok.social'
+      FLAG: 'flag{alt_services_bring_alt_attack_surfaces}'
+      TIMEOUT: '30'
+      RATELIMIT_DURATION: '60'
+      MAX: '2'
+    volumes:
+      - ./certs:/certs
+    ports:
+      - '443:3443'
+      - '3444:3444'
+      - '3021:3021'
+      - '30000-30100:30000-30100'
